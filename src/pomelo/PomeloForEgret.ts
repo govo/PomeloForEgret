@@ -375,6 +375,10 @@ module PomeloForEgret{
         }
         private handshakeInit(data):void{
 
+            if(data.sys){
+                Routedic.init(data.sys.dict);
+                Protobuf.init(data.sys.protos);
+            }
             if(data.sys && data.sys.heartbeat) {
                 this.heartbeatInterval = data.sys.heartbeat * 1000;   // heartbeat interval
                 this.heartbeatTimeout = this.heartbeatInterval * 2;        // max heartbeat timeout
@@ -590,10 +594,10 @@ module PomeloForEgret{
             //    route = Pomelo.requests[id].route;
             //}
             //
-            //if (!id && !(typeof(route) == "string"))
-            //{
-            //    route = Routedic.getName(route);
-            //}
+            if (!id && !(typeof(route) == "string"))
+            {
+                route = Routedic.getName(route);
+            }
 
             var body:any = Protobuf.decode(route, buffer) || JSON.parse(Protocol.strdecode(buffer));
 
