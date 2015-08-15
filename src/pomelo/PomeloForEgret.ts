@@ -1,8 +1,8 @@
 /**
+ * Created by govo on 15/8/14.
  *
  * Pomelo Client for Egret, with protobuf support, with js ws client version 0.0.5
- * Created by govo on 15/8/14.
- * https://github.com/govo/PomeloForEgret.git
+ * Github: https://github.com/govo/PomeloForEgret.git
  *
  * Thanks to:
  * D-Deo @ https://github.com/D-Deo/pomelo-flash-tcp.git

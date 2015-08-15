@@ -213,17 +213,21 @@ class Main extends egret.DisplayObjectContainer {
 
         var host = "127.0.0.1";
         var port = "3010";
-        this.pomelo.on("io-error", function(event){
+        this.pomelo.on(PomeloForEgret.Pomelo.EVENT_IO_ERROR, function(event){
             //错误处理
             console.error("error",event);
         });
-        this.pomelo.on("close", function(event){
+        this.pomelo.on(PomeloForEgret.Pomelo.EVENT_CLOSE, function(event){
             //关闭处理
             console.error("close",event);
         });
         this.pomelo.on(PomeloForEgret.Pomelo.EVENT_HEART_BEAT_TIMEOUT, function(event){
-            //关闭处理
+            //心跳timeout
             console.error("heart beat timeout",event);
+        });
+        this.pomelo.on(PomeloForEgret.Pomelo.EVENT_KICK, function(event){
+            //踢出
+            console.error("kick",event);
         });
 
         var pomelo = this.pomelo;
@@ -232,11 +236,6 @@ class Main extends egret.DisplayObjectContainer {
             port: port
         }, function () {
             //连接成功执行函数
-
-            pomelo.on("onMessage", function(result){
-                //处理函数
-                console.log("onMessage",result);
-            });
 
             pomelo.request("connector.entryHandler.entry","hello world" , function (result) {
                 //消息回调
