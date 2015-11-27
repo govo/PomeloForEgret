@@ -162,6 +162,10 @@ module PomeloForEgret{
             this.callbacks[reqId] = cb;
             this.routeMap[reqId] = route;
         }
+        
+        public notify(route:string, msg:any):void {
+            this.sendMessage(0, route, msg);
+        }
 
         private onMessage(event:egret.Event):void{
             var byte:egret.ByteArray = new egret.ByteArray();
